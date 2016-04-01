@@ -1,38 +1,43 @@
-var cell = 	{
-	x:0,
-	y:0,
-	curr_value:0,
-	future_value:0,
-	live_neighbours:0,
-	colour: "white"
+function cell(x,y,curr_value,future_value,live_neighbour,colour)
+{
+	this.x = x;
+	this.y = y;
+	this.curr_value = curr_value;
+	this.future_value = future_value;
+	this.colour = colour;
 }
 
-c1 = Object.create(cell);
-console.log(c1);
-
-
-var automaton = {
-	array_size:0,
-	cell_size:0,
-	body:[],
-	x_offset:0,
-	y_offset:0	
+function automaton(array_size,cell_size,base_colour,x_offset,y_offset)
+{
+	this.array_size = array_size;
+	this.cell_size = cell_size;
+	this.base_colour = base_colour;
+	this.x_offset = x_offset;
+	this.y_offset = y_offset;
+	this.body = [];
+	this.initialize_body = a_initialize_body;
+	this.calc_live_neighbours = a_calc_live_neighbours;
+	this.calc_future_values = a_calc_future_values;
+	this.update_curr_values = a_update_curr_values;
+	this.update_colours = a_update_colours;
+	this.draw = a_draw;
+	this.detect_clicks = a_detect_clicks;
 }
 
-automaton.initialize_body = function(){
+a_initialize_body =  function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		this.body[i] = [];
 		for(j=0;j<this.array_size;j++)
 		{
-			this.body[i][j] = Object.create(cell);
+			this.body[i][j] = new cell(i,j,0,0,"white");
 			this.body[i][j].curr_value = Math.floor(Math.random()*2);
 		}
 	}
 	return(this);
 }
 
-automaton.calc_live_neighbours = function() {
+a_calc_live_neighbours = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -55,7 +60,7 @@ automaton.calc_live_neighbours = function() {
 	}
 }
 
-automaton.calc_future_values = function() {
+a_calc_future_values = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -74,7 +79,7 @@ automaton.calc_future_values = function() {
 	}
 }
 
-automaton.update_curr_values = function() {
+a_update_curr_values = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -84,20 +89,20 @@ automaton.update_curr_values = function() {
 	}
 }
 
-automaton.update_colours = function() {
+a_update_colours = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
 		{
 			if(this.body[i][j].curr_value == 1)
-				this.body[i][j].colour = "black";
+				this.body[i][j].colour = "hsl(" + (this.base_colour + Math.random() * 10) + ", 100%, 35%)";
 			else
-				this.body[i][j].colour = "white";
+				this.body[i][j].colour = "hsl(" + (this.base_colour + Math.random() * 20) + ", 100%, 75%)";
 		}
 	}
 }
 
-automaton.draw = function(ctx) {
+a_draw = function(ctx) {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -108,7 +113,7 @@ automaton.draw = function(ctx) {
 	}
 }
 
-automaton.detect_clicks = function(mousedown_coords) {
+a_detect_clicks = function(mousedown_coords) {
 	if((mousedown_coords[0]!=null)&&(mousedown_coords[1]!=null))
 	{
 		console.log("detecting clicks");
@@ -127,34 +132,3 @@ automaton.detect_clicks = function(mousedown_coords) {
 		}
 	}
 }
-
-
-/*canvas = document.querySelector("canvas");
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-ctx = canvas.getContext("2d");
-a1 = Object.create(automaton);
-a1.array_size = 20;
-a1.cell_size = 10;
-a1.initialize_body();
-// a1.calc_live_neighbours();
-// a1.calc_future_values();
-// a1.update_curr_values();
-// a1.update_colours();
-// a1.draw(ctx);
-// console.log(a1.body);
-
-function MainLoop()
-{
-	a1.calc_live_neighbours();
-	a1.calc_future_values();
-	a1.update_curr_values();
-	a1.detect_clicks(mousedown_coords);
-	a1.update_colours();
-	a1.draw(ctx);
-}
-
-
-
-var blah = setInterval(MainLoop,100);
-*/
