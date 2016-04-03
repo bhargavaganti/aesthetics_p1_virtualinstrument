@@ -108,6 +108,19 @@ automaton.draw = function(ctx) {
 	}
 }
 
+automaton.exec_cb_on_cell_state(state,cb,args) {
+	for(i=0;i<this.array_size;i++)
+	{
+		for(j=0;j<this.array_size;j++)
+		{
+			if(this.body[i][j].curr_value == state)
+			{
+				cb(args);
+			}
+		}
+	}
+}
+
 automaton.detect_clicks = function(mousedown_coords) {
 	if((mousedown_coords[0]!=null)&&(mousedown_coords[1]!=null))
 	{

@@ -21,6 +21,7 @@ function automaton(array_size,cell_size,base_colour,x_offset,y_offset)
 	this.update_curr_values = a_update_curr_values;
 	this.update_colours = a_update_colours;
 	this.draw = a_draw;
+	this.exec_cb_on_cell_state = a_exec_cb_on_cell_state;
 	this.detect_clicks = a_detect_clicks;
 }
 
@@ -113,6 +114,19 @@ a_draw = function(ctx) {
 	}
 }
 
+a_exec_cb_on_cell_state = function(state,cb,args) {
+	for(i=0;i<this.array_size;i++)
+	{
+		for(j=0;j<this.array_size;j++)
+		{
+			if(this.body[i][j].curr_value == state)
+			{
+				cb(args);
+			}
+		}
+	}
+}
+
 a_detect_clicks = function(mousedown_coords) {
 	if((mousedown_coords[0]!=null)&&(mousedown_coords[1]!=null))
 	{
@@ -127,6 +141,7 @@ a_detect_clicks = function(mousedown_coords) {
 				{
 					console.log("click detected!");
 					this.body[i][j].curr_value = 1;
+					MIDI.noteOn(0,60,127,0);
 				}
 			}
 		}

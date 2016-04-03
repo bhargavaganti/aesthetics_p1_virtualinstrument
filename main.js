@@ -3,8 +3,10 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 ctx = canvas.getContext("2d");
 
-a1 = new automaton(3,50,240,0,0);
+a1 = new automaton(10,10,240,0,0);
 a1.initialize_body();
+
+var args = {n:60,v:127,d:0};
 
 function MainLoopA()
 {
