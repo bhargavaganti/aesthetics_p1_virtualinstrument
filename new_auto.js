@@ -114,14 +114,15 @@ a_draw = function(ctx) {
 	}
 }
 
-a_exec_cb_on_cell_state = function(state,cb,args) {
+a_exec_cb_on_cell_state = function(instr_array) {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
 		{
-			if(this.body[i][j].curr_value == state)
+			if(this.body[i][j].curr_value == true)
 			{
-				cb(args);
+				if(Math.random() > 0.4)
+					play_randnote(instr_array,0,(i*this.array_size+j)%127,120,0);
 			}
 		}
 	}
@@ -141,7 +142,7 @@ a_detect_clicks = function(mousedown_coords) {
 				{
 					console.log("click detected!");
 					this.body[i][j].curr_value = 1;
-					MIDI.noteOn(0,60,127,0);
+					//play_note("violin",0,60+(i*3)+j,120,0);
 				}
 			}
 		}

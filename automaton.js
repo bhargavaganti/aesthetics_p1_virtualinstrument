@@ -115,7 +115,7 @@ automaton.exec_cb_on_cell_state(state,cb,args) {
 		{
 			if(this.body[i][j].curr_value == state)
 			{
-				cb(args);
+				play_note("choir_aahs",1,60,127,0);
 			}
 		}
 	}
