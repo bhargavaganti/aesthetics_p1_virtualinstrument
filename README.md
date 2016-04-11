@@ -35,3 +35,7 @@ This is not intended as a standalone work of art, but rather as a framework in w
 	c1.exec_cb_on_cell_state(instr_array_1);
 	
 Any number or variety of automata can be added, at least till you run out of memory. To keep repository size and file count manageable, only soundfonts used in the demo have been uploaded. More can be added as required. 
+
+3. Experimentation.
+
+In addition to differing amounts, sizes and soundfonts of automata, varying the duration of the two setIntervals also yields interesting results.

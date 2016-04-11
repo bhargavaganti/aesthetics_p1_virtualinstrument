@@ -56,5 +56,5 @@ function MainMain()
 	MainLoopB();
 }
 
-var blah = setInterval(MainMain,500);
+var blah = setInterval(MainMain,3000);
 //MainMain();

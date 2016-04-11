@@ -18,6 +18,6 @@ function play_randnote(instr_array,channel,note,velocity,delay) {
 	var instr_name =  instr_array[Math.floor(Math.random()*instr_array.length)];
 	MIDI.programChange(channel, MIDI.GM.byName[instr_name].number);
 	MIDI.noteOn(channel,note,velocity,delay);
-	MIDI.noteOff(channel,note,delay+0.25);
+	MIDI.noteOff(channel,note,delay+1.25);
 }
 
