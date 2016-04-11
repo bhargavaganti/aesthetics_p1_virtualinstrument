@@ -4,7 +4,7 @@ canvas.width = window.innerWidth;
 ctx = canvas.getContext("2d");
 
 
-console.log("hello world!");
+//console.log("hello world!");
 a1 = new automaton(20,20,240,0,0); //define an automaton with the arguments(array size, cell size, base colour(hue),x offset, y offset)
 a1.initialize_body();
 
@@ -20,7 +20,7 @@ function MainLoopA()
 		a1.initialize_body();
 }
 
-b1 = new automaton(10,70,660,500,200);
+b1 = new automaton(10,25,100,500,200);
 b1.initialize_body();
 
 function MainLoopB()
