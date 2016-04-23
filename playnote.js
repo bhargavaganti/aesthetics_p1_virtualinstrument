@@ -10,7 +10,7 @@ MIDI.loadPlugin({
 			console.log(state, progress);
 			},
     onsuccess: function() {
-							var blah = setInterval(MainMain,1200);
+							
 						  }
 });
 

@@ -20,6 +20,7 @@ function automaton(array_size,cell_size,base_colour,x_offset,y_offset)
 	this.calc_future_values = a_calc_future_values;
 	this.update_curr_values = a_update_curr_values;
 	this.update_colours = a_update_colours;
+	this.update_empty_colours = a_update_empty_colours;
 	this.draw = a_draw;
 	this.exec_cb_on_cell_state = a_exec_cb_on_cell_state;
 	this.detect_clicks = a_detect_clicks;
@@ -98,6 +99,17 @@ a_update_colours = function() {
 			if(this.body[i][j].curr_value == 1)
 				this.body[i][j].colour = "hsl(" + (this.base_colour + Math.random() * 10) + ", 100%, 35%)";
 			else
+				this.body[i][j].colour = "hsl(" + (this.base_colour + Math.random() * 20) + ", 100%, 75%)";
+		}
+	}
+}
+
+a_update_empty_colours = function() {
+	for(i=0;i<this.array_size;i++)
+	{
+		for(j=0;j<this.array_size;j++)
+		{
+			if(this.body[i][j].curr_value == 0)
 				this.body[i][j].colour = "hsl(" + (this.base_colour + Math.random() * 20) + ", 100%, 75%)";
 		}
 	}

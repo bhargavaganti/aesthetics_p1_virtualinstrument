@@ -2,10 +2,11 @@ canvas = document.querySelector("canvas");
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 ctx = canvas.getContext("2d");
+ctx.globalAlpha = 0.8;
 
 
 //console.log("hello world!");
-a1 = new automaton(20,20,240,0,0); //define an automaton with the arguments(array size, cell size, base colour(hue),x offset, y offset)
+a1 = new automaton(19,50,240,canvas.width/2,0); //define an automaton with the arguments(array size, cell size, base colour(hue),x offset, y offset)
 a1.initialize_body();
 
 function MainLoopA()
@@ -20,7 +21,7 @@ function MainLoopA()
 		a1.initialize_body();
 }
 
-b1 = new automaton(10,25,100,500,200);
+b1 = new automaton(19,50,100,0,0);
 b1.initialize_body();
 
 function MainLoopB()
@@ -50,11 +51,20 @@ function OnKeyUp(e)
 	keys[e.keyCode] = false;
 }
 
-function MainMain()
+function bg_update()
 {
-	MainLoopA();
-	MainLoopB();
+	a1.update_empty_colours();
+	a1.draw(ctx);
+	b1.update_empty_colours();
+	b1.draw(ctx);
+	console.log("bgupdate");
 }
 
-var blah = setInterval(MainMain,3000);
+
+var blah3 = setInterval(bg_update,100);
+
+var blah1 = setInterval(MainLoopA,3000);
+var blah2 = setInterval(MainLoopB,1200);
+
+
 //MainMain();
