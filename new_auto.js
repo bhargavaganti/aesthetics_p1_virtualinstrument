@@ -1,3 +1,6 @@
+ionian = [0,2,4,5,7,9,11];
+
+
 function cell(x,y,curr_value,future_value,live_neighbour,colour)
 {
 	this.x = x;
@@ -126,15 +129,15 @@ a_draw = function(ctx) {
 	}
 }
 
-a_exec_cb_on_cell_state = function(instr_array) {
+a_exec_cb_on_cell_state = function(instr_array,base_note) {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
 		{
 			if(this.body[i][j].curr_value == true)
 			{
-				if(Math.random() > 0.4)
-					play_randnote(instr_array,0,(i*this.array_size+j)%127,120,0);
+				if(Math.random() > 0.9)
+					play_randnote(instr_array,0,base_note+ionian[(i*this.array_size+j)%7],120,0);
 			}
 		}
 	}

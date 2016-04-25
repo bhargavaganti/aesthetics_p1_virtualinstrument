@@ -2,7 +2,8 @@ var sf = ["accordion","acoustic_bass","acoustic_grand_piano","acoustic_guitar_ny
 
 
 var instr_array_1 = ["choir_aahs","acoustic_grand_piano","accordion","acoustic_bass","acoustic_guitar_nylon"];
-var instr_array_2 = ["sitar","xylophone"];
+var instr_array_2 = ["acoustic_guitar_nylon"];
+var instr_array_3 = ["acoustic_grand_piano"];
 
 MIDI.loadPlugin({
     instruments: instr_array_1.concat(instr_array_2),//concatenate all the instr_arrays you want to use here.
