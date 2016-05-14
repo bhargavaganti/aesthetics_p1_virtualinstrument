@@ -1,5 +1,5 @@
-ionian = [0,2,4,5,7,9,11];
-
+let ionian = [0,2,4,5,7,9,11];
+let i,j,x,y;
 
 function cell(x,y,curr_value,future_value,live_neighbour,colour)
 {
@@ -34,7 +34,7 @@ function automaton(array_size,cell_size,dead_colour,live_colour,x_offset,y_offse
 	this.detect_clicks = a_detect_clicks;
 }
 
-a_initialize_body =  function() {
+let a_initialize_body =  function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		this.body[i] = [];
@@ -52,7 +52,7 @@ a_initialize_body =  function() {
 	return(this);
 }
 
-a_calc_live_neighbours = function() {
+let a_calc_live_neighbours = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -75,7 +75,7 @@ a_calc_live_neighbours = function() {
 	}
 }
 
-a_rotate_cells = function() {
+let a_rotate_cells = function() {
 	for(i=0;i<this.array_size;i++)
 		{
 			for(j=0;j<this.array_size;j++)
@@ -88,7 +88,7 @@ a_rotate_cells = function() {
 		
 }
 
-a_calc_future_values = function() {
+let a_calc_future_values = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -107,7 +107,7 @@ a_calc_future_values = function() {
 	}
 }
 
-a_update_curr_values = function() {
+let a_update_curr_values = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -117,7 +117,7 @@ a_update_curr_values = function() {
 	}
 }
 
-a_update_colours = function() {
+let a_update_colours = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -135,7 +135,7 @@ a_update_colours = function() {
 	}
 }
 
-a_update_empty_colours = function() {
+let a_update_empty_colours = function() {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -146,7 +146,7 @@ a_update_empty_colours = function() {
 	}
 }
 
-a_draw = function(ctx) {
+let a_draw = function(ctx) {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -159,7 +159,7 @@ a_draw = function(ctx) {
 	}
 }
 
-a_exec_cb_on_cell_state = function(instr_array,base_note) {
+let a_exec_cb_on_cell_state = function(instr_array,base_note) {
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
@@ -173,7 +173,7 @@ a_exec_cb_on_cell_state = function(instr_array,base_note) {
 	}
 }
 
-a_detect_clicks = function(mousedown_coords) {
+let a_detect_clicks = function(mousedown_coords) {
 	if((mousedown_coords[0]!=null)&&(mousedown_coords[1]!=null))
 	{
 		console.log("detecting clicks");

@@ -1,5 +1,5 @@
 
-var scene, camera, renderer;
+var scene, camera, renderer, composer,renderScene;
 var geometry, material, mesh;
 var c_x,c_z;
 
@@ -22,8 +22,8 @@ light.position.set( 50, 50, 50 );
 scene.add( light );
 
 	geometry = new THREE.BoxGeometry( 100, 100, 100 );
-	redmaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
-	bluematerial = new THREE.MeshBasicMaterial( { color: 0x00bfff, wireframe: true } );
+	var redmaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+	var bluematerial = new THREE.MeshBasicMaterial( { color: 0x00bfff, wireframe: true } );
 
 
 	//cube = new THREE.Mesh( geometry, material );
@@ -42,11 +42,11 @@ scene.add( light );
     
     composer.addPass( renderScene );
 	
-	let dots = new THREE.ShaderPass( THREE.DOFMipMapShader );
+	let dots = new THREE.ShaderPass( THREE.RGBShiftShader );
     dots.renderToScreen = true
     
     //this.shaders.push( dots )
-    this.composer.addPass( dots )
+    composer.addPass( dots )
 
 	document.body.appendChild( renderer.domElement );
 }

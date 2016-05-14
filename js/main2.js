@@ -6,7 +6,7 @@ ctx.globalAlpha = 0.5;*/
 
 
 //console.log("hello world!");
-a1 = new automaton(20,50,0xff0000,0xBB00FA,-1000,0,0); //define an automaton with the arguments(array size, cell size, base colour(hue),x offset, y offset)
+let a1 = new automaton(20,50,0xff0000,0xBB00FA,-1000,0,0); //define an automaton with the arguments(array size, cell size, base colour(hue),x offset, y offset)
 a1.initialize_body();
 
 function MainLoopA()
@@ -22,7 +22,7 @@ function MainLoopA()
 		a1.initialize_body();
 }
 
-b1 = new automaton(20,50,0xff0000,0x00bfff,-1000,0,200);
+let b1 = new automaton(20,50,0xff0000,0x00bfff,-1000,0,200);
 b1.initialize_body();
 
 function MainLoopB()
