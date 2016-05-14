@@ -11,14 +11,11 @@ MIDI.loadPlugin({
 			},
     onsuccess: function() {
 	MIDI.setEffects([
-	{
-        type: "Convolver",
-        highCut: 22050, // 20 to 22050
-        lowCut: 20, // 20 to 22050
-        dryLevel: 1, // 0 to 1+
-        wetLevel: 2, // 0 to 1+
-        level: 1, // 0 to 1+, adjusts total output of both wet and dry
-        impulse: "./node_modules/tunajs/impulses/impulse_rev.wav", // the path to your impulse response
+	 {
+        type: "Chorus",
+        rate: 0.5,
+        feedback: 0.2,
+        delay: 0.0045,
         bypass: 0
     }]);
 						  }
