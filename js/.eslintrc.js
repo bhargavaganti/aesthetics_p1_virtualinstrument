@@ -1,0 +1,24 @@
+module.exports = {
+    "rules": {
+		"no-console":0,
+		"no-undef":0,
+		"no-unused-vars":0,
+        "indent": [
+            2,
+            0
+        ],
+        "quotes": [
+            2,
+            "double"
+        ],
+        "linebreak-style": [
+            2,
+            "windows"
+        ],
+    },
+    "env": {
+        "es6": true,
+        "node": true
+		},
+    "extends": "eslint:recommended"
+};

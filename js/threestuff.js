@@ -1,6 +1,6 @@
 
 var scene, camera, renderer, composer,renderScene;
-var geometry, material, mesh;
+//var geometry, material, mesh;
 var c_x,c_z;
 
 init();
@@ -32,37 +32,24 @@ scene.add( light );
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight);
-	
 	composer = new THREE.EffectComposer( renderer );
-
-    renderScene = new THREE.RenderPass( scene, camera );
-    
-    renderScene.clear = true;
-    renderScene.renderToScreen = true;
-    
-    composer.addPass( renderScene );
-	
+	renderScene = new THREE.RenderPass( scene, camera );
+	renderScene.clear = true;
+	renderScene.renderToScreen = true;
+	composer.addPass( renderScene );
 	let dots = new THREE.ShaderPass( THREE.RGBShiftShader );
-    dots.renderToScreen = true
-    
-    //this.shaders.push( dots )
-    composer.addPass( dots )
-
+	dots.renderToScreen = true;
+	composer.addPass( dots );
 	document.body.appendChild( renderer.domElement );
 }
 
 
 
 function animate() {
-
-	requestAnimationFrame( animate );
-
-    var timer = Date.now() * 0.0001;
-
-    camera.position.x = Math.cos( timer ) * 1500;
-    camera.position.z = Math.sin( timer ) * 1500;
-    camera.lookAt( scene.position );
-
+requestAnimationFrame( animate );
+	var timer = Date.now() * 0.0001;
+	camera.position.x = Math.cos( timer ) * 1500;
+	camera.position.z = Math.sin( timer ) * 1500;
+	camera.lookAt( scene.position );
 	renderer.render( scene, camera );
-
 }

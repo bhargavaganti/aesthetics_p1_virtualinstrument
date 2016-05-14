@@ -5,20 +5,20 @@ var instr_array_2 = ["acoustic_guitar_nylon"];
 var instr_array_3 = ["acoustic_grand_piano"];
 
 MIDI.loadPlugin({
-    instruments: instr_array_1.concat(instr_array_2),//concatenate all the instr_arrays you want to use here.
+	instruments: instr_array_1.concat(instr_array_2),//concatenate all the instr_arrays you want to use here.
 	onprogress: function(state, progress) {
 			console.log(state, progress);
 			},
-    onsuccess: function() {
+	onsuccess: function()	{
 	MIDI.setEffects([
-	 {
-        type: "Chorus",
-        rate: 0.5,
-        feedback: 0.2,
-        delay: 0.0045,
-        bypass: 0
-    }]);
-						  }
+	{
+		type: "Chorus",
+		rate: 0.5,
+		feedback: 0.2,
+		delay: 0.0045,
+		bypass: 0
+	}]);
+							}
 });
 
 function play_randnote(instr_array,channel,note,velocity,delay) {
