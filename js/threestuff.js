@@ -1,6 +1,6 @@
 
 var scene, camera, renderer, composer,renderScene;
-//var geometry, material, mesh;
+var geometry, material, mesh;
 var c_x,c_z;
 
 init();

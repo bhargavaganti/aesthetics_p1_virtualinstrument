@@ -9,19 +9,23 @@ function cell(x,y,curr_value,future_value,live_neighbour,colour)
 	this.future_value = future_value;
 	this.colour = colour;
 	this.scene_mesh = null;
+	this.bobspeed = 0;
 }
 
-function automaton(array_size,cell_size,dead_colour,live_colour,x_offset,y_offset,z_offset,dead_cell_visibility = false)
+function automaton(array_size,cell_size,dead_colour,live_colour,x_offset,y_offset,z_offset,volume)
 {
 	this.array_size = array_size;
 	this.cell_size = cell_size;
 	var texture = new THREE.TextureLoader().load( "textures/white.jpg" );
-	this.dead_material = new THREE.MeshBasicMaterial( { color: dead_colour, wireframe: true, visible: dead_cell_visibility } );
+	this.dead_material = new THREE.MeshBasicMaterial( { color: dead_colour, wireframe: true, visible: false } );
 	this.live_material = new THREE.MeshBasicMaterial( { color: live_colour, wireframe: true } ); // THREE.MeshPhongMaterial( { color: live_colour, specular: 0x009900, shininess: 30, shading: THREE.FlatShading } )
 	this.x_offset = x_offset;
 	this.y_offset = y_offset;
 	this.z_offset = z_offset;
+	this.volume = volume;
 	this.body = [];
+	this.transitiondegree = 0;
+	this.total_live_cells = 0;
 	this.initialize_body = a_initialize_body;
 	this.calc_live_neighbours = a_calc_live_neighbours;
 	this.rotate_cells = a_rotate_cells;
@@ -31,6 +35,7 @@ function automaton(array_size,cell_size,dead_colour,live_colour,x_offset,y_offse
 	this.update_empty_colours = a_update_empty_colours;
 	this.draw = a_draw;
 	this.exec_cb_on_cell_state = a_exec_cb_on_cell_state;
+	this.bob = a_bob;
 	this.detect_clicks = a_detect_clicks;
 }
 
@@ -108,11 +113,17 @@ let a_calc_future_values = function() {
 }
 
 let a_update_curr_values = function() {
+	this.transitiondegree = 0;
+	this.total_live_cells = 0;
 	for(i=0;i<this.array_size;i++)
 	{
 		for(j=0;j<this.array_size;j++)
 		{
+			if(this.body[i][j].curr_value != this.body[i][j].future_value)
+				this.transitiondegree++;
 			this.body[i][j].curr_value = this.body[i][j].future_value;
+			if(this.body[i][j].curr_value == 1)
+				this.total_live_cells++;
 		}
 	}
 }
@@ -167,8 +178,30 @@ let a_exec_cb_on_cell_state = function(instr_array,base_note) {
 			if(this.body[i][j].curr_value == true)
 			{
 				if(Math.random() > 0.9)
-					play_randnote(instr_array,0,base_note+ionian[(i*this.array_size+j)%7],30,0);
+				{
+					let rn = (i*this.array_size+j)%7;
+					let volume = this.volume*this.total_live_cells/this.array_size;
+					//console.log(this.volume);
+					play_randnote(instr_array,0,base_note+ionian[rn],this.volume,0);
+					if(rn<3)
+						this.body[i][j].bobspeed= -0.01;
+					if(rn == 3)
+						this.body[i][j].bobspeed= 0;
+					if(rn > 3)
+						this.body[i][j].bobspeed= 0.01;
+				}
 			}
+		}
+	}
+}
+
+let a_bob = function() {
+	for(i=0;i<this.array_size;i++)
+	{
+		for(j=0;j<this.array_size;j++)
+		{
+			if(this.body[i][j].curr_value == true)
+				this.body[i][j].scene_mesh.position.y+=100*this.body[i][j].bobspeed;
 		}
 	}
 }
