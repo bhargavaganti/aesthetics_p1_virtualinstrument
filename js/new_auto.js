@@ -12,7 +12,7 @@ function cell(x,y,curr_value,future_value,live_neighbour,colour)
 	this.bobspeed = 0;
 }
 
-function automaton(array_size,cell_size,dead_colour,live_colour,x_offset,y_offset,z_offset,volume)
+function automaton(array_size,cell_size,dead_colour,live_colour,x_offset,y_offset,z_offset,volume = 12)
 {
 	this.array_size = array_size;
 	this.cell_size = cell_size;

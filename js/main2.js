@@ -60,6 +60,16 @@ function bg_update()
 	//b1.rotate_cells();
 	//b1.draw(ctx);
 	//console.log("bgupdate");
+	a1.bob();
+	b1.bob();
+}
+
+function reinitialize()
+{
+	if(a1.total_live_cells < a1.array_size)
+		a1.initialize_body();
+	if(b1.total_live_cells < b1.array_size)
+		b1.initialize_body();
 }
 
 
@@ -67,6 +77,7 @@ var blah3 = setInterval(bg_update,100);
 
 var blah1 = setInterval(MainLoopA,600);
 var blah2 = setInterval(MainLoopB,800);
+var blah4 = setInterval(reinitialize,15000);
 
 
 //MainMain();
